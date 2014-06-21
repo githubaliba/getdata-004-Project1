@@ -40,8 +40,8 @@ allData.activity[allData.activity==6] <- "LAYING"
 
 labels <- read.table('data/UCI HAR Dataset/features.txt')
 colnames(allData) <- labels[,2]
-allData$Activity <- allData.activity
-allData$Subject <- allData.subject
+allData$Activity <- unlist(allData.activity)
+allData$Subject <- unlist(allData.subject)
 
 ##Part 2: Extracts only the measurements on the mean and standard deviation for each measurement.
 

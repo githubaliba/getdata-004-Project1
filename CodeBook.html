@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+
+<title>Getting and Cleaning Data - Project 1 CODE BOOK</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+
+
+</head>
+
+<body>
+<h1>Getting and Cleaning Data - Project 1 CODE BOOK</h1>
+
+<h2>Names of Columns and Units of Data</h2>
+
+<p>Below is the full list of data columns in the uploaded data set SubjectActivityMeans.txt.  Note that the data represented in the dataset is the MEAN value for the represented variables across a larger set of observations.  </p>
+
+<p>The data is grouped by Subject (there were 30 participants) and activity (there were six activity types).  The remaining values represent various accelerometer readings collected by the study devices.  More information may be available on the original data site referenced below.  </p>
+
+<p>Please note that names were cleaned up to make them more R-friendly, removing parentheses and commas and replacing them with dashes where applicable.  </p>
+
+<p>&ldquo;Subject&rdquo;<br/>
+&ldquo;Activity&rdquo;<br/>
+&ldquo;tBodyAcc-mean-X&rdquo;<br/>
+&ldquo;tBodyAcc-mean-Y&rdquo;<br/>
+&ldquo;tBodyAcc-mean-Z&rdquo;<br/>
+&ldquo;tBodyAcc-std-X&rdquo;<br/>
+&ldquo;tBodyAcc-std-Y&rdquo;<br/>
+&ldquo;tBodyAcc-std-Z&rdquo;<br/>
+&ldquo;tGravityAcc-mean-X&rdquo;<br/>
+&ldquo;tGravityAcc-mean-Y&rdquo;<br/>
+&ldquo;tGravityAcc-mean-Z&rdquo;<br/>
+&ldquo;tGravityAcc-std-X&rdquo;<br/>
+&ldquo;tGravityAcc-std-Y&rdquo;<br/>
+&ldquo;tGravityAcc-std-Z&rdquo;<br/>
+&ldquo;tBodyAccJerk-mean-X&rdquo;<br/>
+&ldquo;tBodyAccJerk-mean-Y&rdquo;<br/>
+&ldquo;tBodyAccJerk-mean-Z&rdquo;<br/>
+&ldquo;tBodyAccJerk-std-X&rdquo;<br/>
+&ldquo;tBodyAccJerk-std-Y&rdquo;<br/>
+&ldquo;tBodyAccJerk-std-Z&rdquo;<br/>
+&ldquo;tBodyGyro-mean-X&rdquo;<br/>
+&ldquo;tBodyGyro-mean-Y&rdquo;<br/>
+&ldquo;tBodyGyro-mean-Z&rdquo;<br/>
+&ldquo;tBodyGyro-std-X&rdquo;<br/>
+&ldquo;tBodyGyro-std-Y&rdquo;<br/>
+&ldquo;tBodyGyro-std-Z&rdquo;<br/>
+&ldquo;tBodyGyroJerk-mean-X&rdquo;<br/>
+&ldquo;tBodyGyroJerk-mean-Y&rdquo;<br/>
+&ldquo;tBodyGyroJerk-mean-Z&rdquo;<br/>
+&ldquo;tBodyGyroJerk-std-X&rdquo;<br/>
+&ldquo;tBodyGyroJerk-std-Y&rdquo;<br/>
+&ldquo;tBodyGyroJerk-std-Z&rdquo;<br/>
+&ldquo;tBodyAccMag-mean&rdquo;<br/>
+&ldquo;tBodyAccMag-std&rdquo;<br/>
+&ldquo;tGravityAccMag-mean&rdquo;<br/>
+&ldquo;tGravityAccMag-std&rdquo;<br/>
+&ldquo;tBodyAccJerkMag-mean&rdquo;<br/>
+&ldquo;tBodyAccJerkMag-std&rdquo;<br/>
+&ldquo;tBodyGyroMag-mean&rdquo;<br/>
+&ldquo;tBodyGyroMag-std&rdquo;<br/>
+&ldquo;tBodyGyroJerkMag-mean&rdquo;<br/>
+&ldquo;tBodyGyroJerkMag-std&rdquo;<br/>
+&ldquo;fBodyAcc-mean-X&rdquo;<br/>
+&ldquo;fBodyAcc-mean-Y&rdquo;<br/>
+&ldquo;fBodyAcc-mean-Z&rdquo;<br/>
+&ldquo;fBodyAcc-std-X&rdquo;<br/>
+&ldquo;fBodyAcc-std-Y&rdquo;<br/>
+&ldquo;fBodyAcc-std-Z&rdquo;<br/>
+&ldquo;fBodyAccJerk-mean-X&rdquo;<br/>
+&ldquo;fBodyAccJerk-mean-Y&rdquo;<br/>
+&ldquo;fBodyAccJerk-mean-Z&rdquo;<br/>
+&ldquo;fBodyAccJerk-std-X&rdquo;<br/>
+&ldquo;fBodyAccJerk-std-Y&rdquo;<br/>
+&ldquo;fBodyAccJerk-std-Z&rdquo;<br/>
+&ldquo;fBodyGyro-mean-X&rdquo;<br/>
+&ldquo;fBodyGyro-mean-Y&rdquo;<br/>
+&ldquo;fBodyGyro-mean-Z&rdquo;<br/>
+&ldquo;fBodyGyro-std-X&rdquo;<br/>
+&ldquo;fBodyGyro-std-Y&rdquo;<br/>
+&ldquo;fBodyGyro-std-Z&rdquo;<br/>
+&ldquo;fBodyAccMag-mean&rdquo;<br/>
+&ldquo;fBodyAccMag-std&rdquo;<br/>
+&ldquo;fBodyBodyAccJerkMag-mean&rdquo;<br/>
+&ldquo;fBodyBodyAccJerkMag-std&rdquo;<br/>
+&ldquo;fBodyBodyGyroMag-mean&rdquo;<br/>
+&ldquo;fBodyBodyGyroMag-std&rdquo;<br/>
+&ldquo;fBodyBodyGyroJerkMag-mean&rdquo;<br/>
+&ldquo;fBodyBodyGyroJerkMag-std&rdquo;<br/>
+&ldquo;angletBodyAccMean-gravity&rdquo;<br/>
+&ldquo;angletBodyAccJerkMean-gravityMean&rdquo;<br/>
+&ldquo;angletBodyGyroMean-gravityMean&rdquo;<br/>
+&ldquo;angletBodyGyroJerkMean-gravityMean&rdquo;<br/>
+&ldquo;angleX-gravityMean&rdquo;<br/>
+&ldquo;angleY-gravityMean&rdquo;<br/>
+&ldquo;angleZ-gravityMean&rdquo;  </p>
+
+<h2>Original Data References  </h2>
+
+<p>Original dataset page is located at: <a href="http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones">http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones</a><br/>
+Original dataset is downloadable at: <a href="https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip">https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip</a>  </p>
+
+<h2>Version</h2>
+
+<p>File last updated and project last executed 2014-06-21.</p>
+
+</body>
+
+</html>
+
